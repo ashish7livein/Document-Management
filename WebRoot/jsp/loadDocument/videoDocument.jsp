@@ -12,9 +12,10 @@
 </c:set>
 <style>
 	.video{
-		width: 100%; height: 100%;
+		width: 100%; height: 70%;	overflow: scroll;
+		
 	}
-	#loadDocument{height:600px; width:600px; overflow: auto;}
+#loadDocument{height:100%; width:100%; }
 </style>
 <div  id='loadDocument'>
 	<object class="video" controls="controls">

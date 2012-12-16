@@ -4,7 +4,7 @@
 	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
 	<constant name="struts.devMode" value="true" />
-
+	<constant name="struts.multipart.maxSize" value="40485760" />
 	<package name="default" namespace="/" extends="struts-default">
 		<default-interceptor-ref name="paramsPrepareParamsStack" />
 		<default-action-ref name="index" />

@@ -1,6 +1,5 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-//test
 <title>Document Management</title>
 <jsp:include page="script.jsp" flush="true" />
 
@@ -277,7 +276,7 @@ document.observe("dom:loaded", function() {
 		width:400px;
 	}
 	.top1{
-		height:120px;
+		height:160px;
 	}
 	#auth{
 	padding-left: 44%;
