@@ -271,10 +271,10 @@ document.observe("dom:loaded", function() {
 	height:100%;
 	}
 	.left1{
-		width:300px;
+		width:220px;
 	}
 	.left2{
-		width:600px;
+		width:400px;
 	}
 	.top1{
 		height:120px;
@@ -292,7 +292,7 @@ document.observe("dom:loaded", function() {
 	{
 	padding:10px 0px; 
 	background:gray;
-	width:40%;
+	width:60%;
 	border-radius:25px;
 	margin-top: 2px;
 	}
@@ -322,7 +322,7 @@ document.observe("dom:loaded", function() {
 	{
 	padding:10px 0px; 
 	background:#DDD;
-	width:40%;
+	width:60%;
 	border-radius:25px;
 	margin-top: 2px;
 	}
@@ -331,7 +331,7 @@ document.observe("dom:loaded", function() {
 	padding-top: 10px;
 	padding-left: 0px;
 	background: gray;
-	width: 50%;
+	width: 80%;
 	border-radius: 25px;
 	margin-top: 2px;
 	margin-left: 20%;
@@ -341,7 +341,7 @@ document.observe("dom:loaded", function() {
 	padding-top: 10px;
 	padding-left: 0px;
 	background: #DDD;
-	width: 50%;
+	width: 80%;
 	border-radius: 25px;
 	margin-top: 2px;
 	margin-left: 20%;
@@ -487,12 +487,8 @@ document.observe("dom:loaded", function() {
 						  </td>	
 						  <td>
 							<input id='documentname' class='documentname' name='documentname' type='text' autocorrect="off" autocapitalize="off" title="document name"/>
-						  </td>
-						  <td>
-								<input id='user' class='user' name='username' type='hidden'/>
-						  </td>
-						  <td>
-								<input id='pass' class='pass' name='password' type='hidden'/>
+						 	<input id='user' class='user' name='username' type='hidden'/>
+						  	<input id='pass' class='pass' name='password' type='hidden'/>
 						  </td>
 						</tr>
 						<tr>
@@ -520,6 +516,8 @@ document.observe("dom:loaded", function() {
 						  <td>
 							<input id='folderName' class='folderName' name='folderName' type='text' title="folderName"/>
 						  </td>
+						</tr>
+						<tr>  
 						  <td>
 						  		<p>ExistingFolder</p>
 						  </td>	
