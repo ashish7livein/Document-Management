@@ -76,7 +76,7 @@
 			value="jdbc:mysql://localhost:3306/docmanagement">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="admin"></property>
+		<property name="password" value="root"></property>
 	</bean>
 	
 	<bean id="sessionFactory"
