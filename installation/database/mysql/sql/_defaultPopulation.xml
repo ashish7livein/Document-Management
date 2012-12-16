@@ -1,0 +1,40 @@
+<!DOCTYPE etl SYSTEM "http://scriptella.javaforge.com/dtd/etl.dtd">
+<etl>
+	<properties>
+		<include href="_etl.properties" />
+	</properties>
+	<connection id="database" driver="mysql" url="${urlPrefix}${host}/${databaseName}" user="${username}" password="${password}" />
+	<connection id="script" driver="script"/>
+	<connection id="users" driver="csv" url="${data_dir}/users.csv"/>
+	<!-- <connection id="folders" driver="csv" url="${data_dir}/folders.csv"/>
+	<connection id="documents" driver="csv" url="${data_dir}/documents.csv"/>
+	 -->
+	<query connection-id="users">
+		<script connection-id="database">
+			insert into `users` (
+				`username`,  `password`, `last_name`,`first_name`
+			) values (
+				?username, ?password, ?last_name, ?first_name
+			)
+		</script>
+	</query>
+<!-- 	<query connection-id="folders">
+		<script connection-id="database">
+			insert into `folders` (
+				`foldername`,  `user_id`
+			) values (
+				?foldername, ?user_id
+			)
+		</script>
+	</query>
+	<query connection-id="documents">
+		<script connection-id="database">
+			insert into `documents` (
+				`document_name`,  `content_type`,`abstraction`,`folder_id`
+			) values (
+				?document_name, ?content_type,?abstraction,?folder_id
+			)
+		</script>
+	</query>
+ -->	
+</etl>

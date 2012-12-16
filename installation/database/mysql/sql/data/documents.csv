@@ -1,0 +1,8 @@
+document_name,content_type,abstraction,folder_id
+result.pdf,PDF,fileSystem,1
+abc.pdf,PDF,fileSystem,1
+result2.pdf,PDF,fileSystem,2
+result6.pdf,PDF,fileSystem,1
+result3.pdf,PDF,fileSystem,1
+result4.pdf,PDF,filesystem,1
+result5.pdf,PDF,fileSystem,1

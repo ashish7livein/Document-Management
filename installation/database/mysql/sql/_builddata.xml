@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project default="main">
+    <description>
+        Recreates database
+    </description>
+    
+    <target name="main">
+        <taskdef resource="antscriptella.properties">
+            <classpath>
+                <pathelement location="../../../../WebRoot/WEB-INF/lib/scriptella.jar"/>
+                <pathelement location="../mysql-connector-java-5.1.14-bin.jar"/>
+            </classpath>
+        </taskdef>
+    	<etl file="_dropDatabase.xml"/>
+    	<etl file="_createDatabase.xml"/>
+        <etl file="_etl.xml"/>
+    	<etl file="_defaultPopulation.xml"/>
+    </target>
+</project>
+

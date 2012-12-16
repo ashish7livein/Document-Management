@@ -1,0 +1,10 @@
+<!DOCTYPE etl SYSTEM "http://scriptella.javaforge.com/dtd/etl.dtd">
+<etl>
+	<properties>
+		<include href="_etl.properties" />
+	</properties>
+	<connection id="default" driver="mysql" url="${urlPrefix}${host}" user="${username}" password="${password}" />
+	<script>
+		drop database if exists ${databaseName};
+	</script>
+</etl>

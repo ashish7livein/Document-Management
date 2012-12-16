@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="/" extends="struts-default">
+		<default-interceptor-ref name="paramsPrepareParamsStack" />
+		<default-action-ref name="index" />
+		<action name="index">
+			<result type="chain">
+				<param name="actionName">screen</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name='gui' namespace='/' extends='struts-default'>
+		<action name='screen' class="com.documentmanagement.action.login.ScreenAction">
+			<result>/jsp/index.jsp</result>
+		</action>
+	</package>
+
+	<package name='auth' namespace='/auth' extends='struts-default'>
+		
+			<default-interceptor-ref name="defaultStack"/>
+			<action name='login' class="loginAction">
+				<result name="success">/jsp/folderList.jsp</result>
+				<result name="failure">/jsp/failure.jsp</result>
+			</action>	
+	</package>
+	<package name='dm' namespace='/dm' extends='struts-default'>
+		
+			<default-interceptor-ref name="defaultStack"/>
+			<action name='documents' class="documentAction">
+				<result name="success">/jsp/documentList.jsp</result>
+				<result name="failure">/jsp/failure.jsp</result>
+			</action>	
+			<action name="loadDocument" class="loadDocumentAction" >
+				<result name="fullDocument">/jsp/loadDocument/fullDocument.jsp</result>
+				<result name="videoDocument">/jsp/loadDocument/videoDocument.jsp</result>
+				<result name="audioDocument">/jsp/loadDocument/audioDocument.jsp</result>
+				<result name="imageDocument">/jsp/loadDocument/imageDocument.jsp</result>
+			</action>
+			<action name="fullDocumentLoader" class="fullDocumentLoaderAction" >
+				<result name="success" type="stream">
+					<param name="contentType">${contentType}</param>
+				</result>
+			</action>
+			<action name="addDocument" class="addDocumentAction" >
+				<result name="success">/jsp/success.jsp</result>
+			</action>
+			<action name="populateFormDocument" class="populateFormDocumentAction" >
+				<result name="success">/jsp/populateForm/populateForm.jsp </result>
+			</action>
+	</package>
+</struts>    

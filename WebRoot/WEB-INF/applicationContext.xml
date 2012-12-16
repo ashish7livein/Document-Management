@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	  http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	   http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	 <!-- ABCD -->
+	 <bean id="loginAction" class="com.documentmanagement.action.login.LoginAction">
+	 	<property name="view">
+	 		 <bean class="com.documentmanagement.view.login.LoginView" scope="prototype"/>
+	 	</property>
+	 	<property name="userDAO" ref="userDAO"/>
+	 	<property name="folderDAO" ref="folderDAO"/>
+	 </bean>
+	 <bean id="documentAction" class="com.documentmanagement.action.document.DocumentAction">
+	 	<property name="view">
+	 		 <bean class="com.documentmanagement.view.document.DocumentView" scope="prototype"/>
+	 	</property>
+	 	<property name="documentProjectionHandler">
+	 		 <bean class="com.documentmanagement.action.document.service.DocumentProjectionHandlerImpl" scope="prototype"/>
+	 	</property>
+	 	
+	 	<property name="documentDAO" ref="documentDAO"/>
+	 </bean>
+	 <bean id="addDocumentAction" class="com.documentmanagement.action.addDcoument.AddDocumentAction" scope="prototype">
+	 	<property name="view">
+	 		 <bean class="com.documentmanagement.view.addDocument.AddDocumentView" scope="prototype"/>
+	 	</property>
+	 	<property name="documentDAO" ref="documentDAO"/>
+	 	<property name="userDAO" ref="userDAO"/>
+	 	<property name="folderDAO" ref="folderDAO"/>
+	 	<property name="folderProjectionHandler">
+	 		 <bean class="com.documentmanagement.action.addDcoument.service.FolderProjectionHandlerImpl" scope="prototype"/>
+	 	</property>
+	 	<property name="documentProjectionHandler">
+	 		 <bean class="com.documentmanagement.action.addDcoument.service.DocumentProjectionHandlerImpl" scope="prototype"/>
+	 	</property>
+	 </bean>	
+	 <bean id="loadDocumentAction" class="com.documentmanagement.action.loadDocument.LoadDocumentAction" scope="prototype">
+	 	<property name="view">
+	 		 <bean class="com.documentmanagement.view.loadDocument.LoadDocumentView" scope="prototype"/>
+	 	</property>
+	 	<property name="documentDAO" ref="documentDAO"/>
+	 </bean>
+	 
+	 <bean id="fullDocumentLoaderAction" class="com.documentmanagement.action.fullDocumentLoader.FullDocumentLoaderAction">
+	  	<property name="view">
+	 		 <bean class="com.documentmanagement.view.fullDocumentLoader.FullDocumentLoaderView" scope="prototype"/>
+	 	</property>
+	 	<property name="documentProjectionHandler">
+	 		 <bean class="com.documentmanagement.action.fullDocumentLoader.service.DocumentProjectionHandlerImpl" scope="prototype"/>
+	 	</property>
+	 	<property name="documentDAO" ref="documentDAO"/>
+	 	<property name="userDAO" ref="userDAO"/>
+	 </bean>
+	 
+	 <bean id="populateFormDocumentAction" class="com.documentmanagement.action.populateForm.PopulateFormDocumentAction">
+	 	<property name="view">
+	 		 <bean class="com.documentmanagement.view.populateForm.PopulateFormDocumentView" scope="prototype"/>
+	 	</property>
+	 	<property name="userDAO" ref="userDAO"/>
+	 	
+	 </bean>
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/docmanagement">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="admin"></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<map>
+			<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<entry key="hibernate.show_sql" value="true" />
+			<entry key="hibernate.format_sql" value="true" />
+   			<entry key="hibernate.use_sql_comments" value="true" />
+			</map>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>mapping/mysql/usersDTO.hbm.xml</value>
+				<value>mapping/mysql/foldersDTO.hbm.xml</value>
+				<value>mapping/mysql/documentsDTO.hbm.xml</value>
+			</list>
+		</property>
+		
+	</bean>
+	
+	<bean id="userDAO" class="com.documentmanagement.service.users.UserDAOImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="documentDAO" class="com.documentmanagement.service.documents.DocumentDAOImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="folderDAO" class="com.documentmanagement.service.folders.FolderDAOImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+</beans>

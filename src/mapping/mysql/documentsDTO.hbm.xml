@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.documentmanagement.model.documents.DocumentDTO" table="documents">
+		<id name="id" type="java.lang.Integer">
+			<column name="document_id" />
+			<generator class="native" />
+		</id>
+		<timestamp name="changed" column="changed" generated="always" source="db"/>
+		<property name="contentType" column="content_type">
+			 <type name="org.hibernate.type.EnumType">
+		         <param name="enumClass">com.documentmanagement.model.documents.ContentTypeEnum</param>
+		         <param name="type">12</param>
+		     </type>
+		</property>
+		<many-to-one name="folder" class="com.documentmanagement.model.folders.FolderDTO" column="folder_id"/>
+		<property name="abstraction" column="abstraction" type="string"/>
+		<property name="documentName" column="document_name" type="string"/>
+		<property name="created" column="created" type="timestamp"/>
+			
+	</class>
+</hibernate-mapping>

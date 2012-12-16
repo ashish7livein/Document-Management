@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.documentmanagement.model.users.UserDTO" table="users">
+		<id name="id" type="java.lang.Integer">
+			<column name="user_id" />
+			<generator class="native" />
+		</id>
+		<timestamp name="changed" column="changed" generated="always" source="db"/>
+		
+		<property name="username" column="username" type="string"/>
+		<property name="password" column="password" type="string"/>
+		<property name="lastname" column="last_name" type="string"/>
+		<property name="firstname" column="first_name" type="string"/>
+		<property name="occupation" column="occupation" type="string"/>
+		<property name="email" column="email" type="string"/>
+		<property name="created" column="created" type="timestamp"/>
+		<set name="folders" table="folders">
+					<key column="user_id"/>
+					<one-to-many class="com.documentmanagement.model.folders.FolderDTO"/>
+		</set>
+	</class>
+</hibernate-mapping>

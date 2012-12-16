@@ -1,0 +1,36 @@
+<!DOCTYPE etl SYSTEM "http://scriptella.javaforge.com/dtd/etl.dtd">
+<etl>
+	<properties>
+		<include href="_etl.properties" />
+	</properties>
+	<connection id="default" driver="mysql" url="${urlPrefix}${host}/${databaseName}" user="${username}" password="${password}" />
+	<connection id="procedure" driver="mysql" url="${urlPrefix}${host}/${databaseName}" user="${username}" password="${password}">
+		statement.separator=//
+	</connection>
+	<script connection-id="default">
+		<include href="users.sql"/>
+		<include href="folders.sql"/>
+		<include href="documents.sql"/>
+	</script>
+	
+		<!-- case_note_memos -->
+		<!-- users -->
+	<script connection-id="procedure">
+		<include href="triggers/users/before_insert.sql"/>
+	</script>
+	<script connection-id="procedure">
+		<include href="triggers/users/before_update.sql"/>
+	</script>
+	<script connection-id="procedure">
+		<include href="triggers/folders/before_insert.sql"/>
+	</script>
+	<script connection-id="procedure">
+		<include href="triggers/folders/before_update.sql"/>
+	</script>
+	<script connection-id="procedure">
+		<include href="triggers/documents/before_insert.sql"/>
+	</script>
+	<script connection-id="procedure">
+		<include href="triggers/documents/before_update.sql"/>
+	</script>
+</etl>
